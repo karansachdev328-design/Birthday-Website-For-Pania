@@ -66,6 +66,19 @@
         .theme-pro button { border-color: #d4af37; color: #d4af37; }
         .theme-pro button:hover:not(:disabled) { background: #d4af37; color: #000000 !important; }
 
+        /* MARVEL THEMES */
+        .theme-ironman { background: linear-gradient(135deg, #4a0404, #1a0000); color: #d4af37; }
+        .theme-ironman button { border-color: #d4af37; color: #d4af37; }
+        .theme-ironman button:hover:not(:disabled) { background: #d4af37; color: #1a0000 !important; }
+
+        .theme-cap { background: linear-gradient(135deg, #021b33, #010a14); color: #e8e8e8; }
+        .theme-cap button { border-color: #e8e8e8; color: #e8e8e8; }
+        .theme-cap button:hover:not(:disabled) { background: #e8e8e8; color: #010a14 !important; }
+
+        .theme-strange { background: linear-gradient(135deg, #0b2027, #1a0b2e); color: #ffb74d; }
+        .theme-strange button { border-color: #ffb74d; color: #ffb74d; }
+        .theme-strange button:hover:not(:disabled) { background: #ffb74d; color: #1a0b2e !important; }
+
         .theme-finale { background: #fffafa; color: #b08d57; }
         .theme-finale .glass-panel { background: #fff; border: 2px solid #d4af37; box-shadow: 0 10px 40px rgba(212, 175, 55, 0.15); }
         .theme-finale button { background: transparent; border: 2px solid #d4af37; color: #d4af37; }
@@ -81,8 +94,8 @@
         
         .photo-visual { width: 100%; max-width: 320px; border-radius: 15px; overflow: hidden; background: rgba(0,0,0,0.2); }
         .photo-visual img { width: 100%; max-height: 40vh; object-fit: contain; border-radius: 15px; display: block; }
-        .photo-lightning-aura { width: 100%; max-width: 330px; position: relative; padding: 4px; border-radius: 18px; animation: lightningAuraPulse 1s ease-in-out infinite; }
-        @keyframes lightningAuraPulse { 0%, 100% { box-shadow: 0 0 8px #00d2ff, 0 0 20px #00d2ff; } 50% { box-shadow: 0 0 15px #ffffff, 0 0 30px #00d2ff; } }
+        .photo-lightning-aura { width: 100%; max-width: 330px; position: relative; padding: 4px; border-radius: 18px; animation: lightningAuraPulse 2s ease-in-out infinite; }
+        @keyframes lightningAuraPulse { 0%, 100% { box-shadow: 0 0 8px rgba(255,255,255,0.3), 0 0 20px rgba(255,255,255,0.2); } 50% { box-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 30px rgba(255,255,255,0.4); } }
 
         /* --- BUTTONS --- */
         .btn-container { display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%; margin-top: 15px; }
@@ -160,7 +173,7 @@
             },
             {
                 theme: "theme-royal", type: "standard", visual: { content: "🏰" },
-                title: "The Royal Empire", text: "Here, you are the undisputed Queen. You wear the crown with an unparalleled, gentle grace that outshines the brightest jewels. Your wisdom, warm heart, and quiet strength guide the realm, inspiring love and admiration from everyone around you. Long live the Queen.",
+                title: "The Royal Empire", text: "Here, you are the undisputed Queen. You wear the crown with an unparalleled, gentle grace that outshines the brightest jewels. Your wisdom, warm heart, and quiet strength guide the realm, inspiring love and admiration from everyone around you.",
                 btnText: "Scan Next Timeline" 
             },
             {
@@ -175,12 +188,31 @@
             },
             {
                 theme: "theme-pro", type: "standard", visual: { content: "💎" },
-                title: "The Proest of Pros", text: "The ultimate convergence. Whether you are dropping jaws like Alia, winning Dundies as Pam, spreading joy as a Fairy, ruling empires as a Queen, being worshipped as a Goddess, or outshining the cosmos... your versatility is unmatched. You are the undisputed Proest of Pros in everything you do.",
-                btnText: "Initiate Final Scan" 
+                title: "The Proest of Pros", text: "The ultimate convergence. Whether you are dropping jaws like Alia, winning Dundies as Pam, spreading joy as a Fairy, ruling empires as a Queen, being worshipped as a Goddess, or outshining the cosmos... your versatility is unmatched.",
+                btnText: "Enter the Marvel Multiverse" 
+            },
+            
+            // --- NEW MARVEL UNIVERSE SECTION ---
+            {
+                theme: "theme-ironman", type: "photo", visual: "ironman.gif", 
+                title: "Earth-199999", text: "Tony Stark said it best: I love you 3000. But honestly, even 3000 seems like a small number when it comes to how much you mean to me.",
+                btnText: "Next Timeline" 
             },
             {
+                theme: "theme-cap", type: "photo", visual: "captain.gif", 
+                title: "The Brooklyn Reality", text: "Through every battle, every challenge, and whatever alternate timeline we end up in... I am with you till the end of the line.",
+                btnText: "Next Timeline" 
+            },
+            {
+                theme: "theme-strange", type: "photo", visual: "drstrange.gif", 
+                title: "The Mystic Dimension", text: "I looked through 14,000,605 futures, and I love you in every universe. I just wish I had the Time Stone, so I could have gone back in time and met you much earlier.",
+                btnText: "Next Timeline" 
+            },
+            
+            // --- THOR FINALE ---
+            {
                 theme: "theme-dark", type: "standard", visual: { content: "⚡" },
-                title: "Anomaly Detected", text: "Wait, an anomaly is detected in the multiverse timeline. The system needs to verify your worthiness before we can continue...",
+                title: "Anomaly Detected", text: "Wait, one last Avenger wants to check something. Mjolnir is reacting to your presence, and the system needs to verify your worthiness before we can conclude...",
                 btnText: "Verify Worthiness", specialAction: "triggerThor" 
             },
             {
@@ -190,7 +222,7 @@
             },
             {
                 theme: "theme-finale", type: "standard", visual: { content: "👑" },
-                title: "Scan Complete.", text: "The data is undeniable. I checked them all, and it's a scientific fact: you are simply the best across all the universes. Happy 23rd Birthday! 🥂",
+                title: "Scan Complete.", text: "The data is undeniable. I checked them all, and it's a scientific fact: you are simply the best across all the universes. Happy 23rd Birthday Pania! 🥂",
                 btnText: "One Last Thing..."
             },
             {
