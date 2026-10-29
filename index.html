@@ -15,7 +15,7 @@
             padding-bottom: calc(20px + env(safe-area-inset-bottom)); 
             text-align: center;
             transition: background 0.8s ease, color 0.8s ease; 
-            overflow-x: hidden; overflow-y: auto;
+            overflow-x: hidden; overflow-y: auto; position: relative;
         }
 
         /* Glass Panel */
@@ -27,6 +27,7 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             transition: all 0.5s ease;
+            z-index: 10; position: relative;
         }
 
         /* --- THEMES --- */
@@ -89,16 +90,50 @@
         .paragraph { font-size: 1.05rem; line-height: 1.45; margin-bottom: 18px; min-height: 70px; font-family: 'Poppins', sans-serif; }
         .icon { font-size: 3.2rem; margin-bottom: 8px; display: block; text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
 
-        /* --- VISUAL ELEMENTS --- */
-        .visual-container { width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 12px; flex-direction: column; }
-        
+        /* --- VISUAL ELEMENTS & MARVEL AURAS --- */
+        .visual-container { width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 12px; flex-direction: column; position: relative; }
         .photo-visual { width: 100%; max-width: 320px; border-radius: 15px; overflow: hidden; background: rgba(0,0,0,0.2); }
         .photo-visual img { width: 100%; max-height: 40vh; object-fit: contain; border-radius: 15px; display: block; }
-        .photo-lightning-aura { width: 100%; max-width: 330px; position: relative; padding: 4px; border-radius: 18px; animation: lightningAuraPulse 2s ease-in-out infinite; }
-        @keyframes lightningAuraPulse { 0%, 100% { box-shadow: 0 0 8px rgba(255,255,255,0.3), 0 0 20px rgba(255,255,255,0.2); } 50% { box-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 30px rgba(255,255,255,0.4); } }
+        
+        /* Base Aura Setup */
+        .photo-lightning-aura, .ironman-aura, .cap-aura, .strange-aura { width: 100%; max-width: 330px; position: relative; padding: 4px; border-radius: 18px; z-index: 5; }
+        
+        /* Thor Lightning Glow */
+        .photo-lightning-aura { animation: lightningAuraPulse 2s ease-in-out infinite; }
+        @keyframes lightningAuraPulse { 0%, 100% { box-shadow: 0 0 8px #00d2ff, 0 0 20px #00d2ff; } 50% { box-shadow: 0 0 15px #ffffff, 0 0 30px #00d2ff; } }
+
+        /* Iron Man Glow */
+        .ironman-aura { animation: ironmanPulse 2s infinite; border: 2px solid rgba(255, 204, 0, 0.5); }
+        @keyframes ironmanPulse { 0%, 100% { box-shadow: 0 0 10px #ff0000, 0 0 20px #ffcc00; } 50% { box-shadow: 0 0 25px #ff0000, 0 0 50px #ffcc00; } }
+
+        /* Cap Glow */
+        .cap-aura { animation: capPulse 2.5s infinite; border: 2px solid rgba(255, 255, 255, 0.5); }
+        @keyframes capPulse { 0%, 100% { box-shadow: 0 0 10px #0055ff, 0 0 20px #ffffff; } 50% { box-shadow: 0 0 20px #0055ff, 0 0 40px #ffffff; } }
+
+        /* Dr Strange Glow & Rotating Portals */
+        .strange-aura { animation: strangePulse 3s infinite; border: 2px solid rgba(255, 102, 0, 0.5); }
+        @keyframes strangePulse { 0%, 100% { box-shadow: 0 0 15px #ff6600, 0 0 20px #00ff00; } 50% { box-shadow: 0 0 30px #ff6600, 0 0 40px #00ff00; } }
+        .strange-aura::before { content: ''; position: absolute; top: -20px; left: -20px; right: -20px; bottom: -20px; border: 2px dashed rgba(255, 102, 0, 0.8); border-radius: 50%; animation: spinMagic 10s linear infinite; z-index: -1; }
+        .strange-aura::after { content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border: 2px dotted rgba(0, 255, 0, 0.5); border-radius: 50%; animation: spinMagicReverse 8s linear infinite; z-index: -1; }
+        @keyframes spinMagic { 100% { transform: rotate(360deg); } }
+        @keyframes spinMagicReverse { 100% { transform: rotate(-360deg); } }
+
+        /* --- MARVEL BACKGROUND ANIMATIONS --- */
+        /* Iron Man HUD Scanner */
+        .hud-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,204,0,0.03) 2px, rgba(255,204,0,0.03) 4px); z-index: 1; }
+        .hud-scanner { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: rgba(255, 204, 0, 0.8); box-shadow: 0 0 15px #ffcc00; animation: hudScan 3.5s linear infinite; z-index: 2; }
+        @keyframes hudScan { 0% { top: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+
+        /* Cap Snow/Dust */
+        .cap-particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; background-image: radial-gradient(circle, #ffffff 2px, transparent 2px); background-size: 60px 60px; animation: snowFall 12s linear infinite; opacity: 0.3; z-index: 1; }
+        @keyframes snowFall { 0% { background-position: 0px 0px; } 100% { background-position: 150px 600px; } }
+
+        /* Strange Time Stone Sparks */
+        .magic-sparks { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; background-image: radial-gradient(circle, #00ff00 2px, transparent 2px); background-size: 80px 80px; animation: sparksRise 8s linear infinite; opacity: 0.2; z-index: 1; }
+        @keyframes sparksRise { 0% { background-position: 0px 600px; } 100% { background-position: -50px 0px; } }
 
         /* --- BUTTONS --- */
-        .btn-container { display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%; margin-top: 15px; }
+        .btn-container { display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%; margin-top: 15px; position: relative; z-index: 10; }
         button { padding: 12px 20px; font-size: 1.05rem; border-radius: 30px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 600; transition: all 0.3s ease; width: 100%; max-width: 300px; background: transparent; border: 2px solid; color: inherit; }
         button:disabled { opacity: 0.3; cursor: not-allowed; color: #777 !important; border-color: #777 !important; }
         button:hover:not(:disabled) { transform: translateY(-2px); }
@@ -123,6 +158,8 @@
     </style>
 </head>
 <body class="theme-dark" id="body-bg">
+
+    <div id="background-effects"></div>
 
     <div id="present-overlay">
         <div class="present-icon" id="present-box">🎁</div>
@@ -194,17 +231,17 @@
             
             // --- NEW MARVEL UNIVERSE SECTION ---
             {
-                theme: "theme-ironman", type: "photo", visual: "ironman.gif", 
+                theme: "theme-ironman", type: "photo", auraClass: "ironman-aura", visual: "ironman.gif", 
                 title: "Earth-199999", text: "Tony Stark said it best: I love you 3000. But honestly, even 3000 seems like a small number when it comes to how much you mean to me.",
                 btnText: "Next Timeline" 
             },
             {
-                theme: "theme-cap", type: "photo", visual: "captain.gif", 
+                theme: "theme-cap", type: "photo", auraClass: "cap-aura", visual: "captain.gif", 
                 title: "The Brooklyn Reality", text: "Through every battle, every challenge, and whatever alternate timeline we end up in... I am with you till the end of the line.",
                 btnText: "Next Timeline" 
             },
             {
-                theme: "theme-strange", type: "photo", visual: "drstrange.gif", 
+                theme: "theme-strange", type: "photo", auraClass: "strange-aura", visual: "drstrange.gif", 
                 title: "The Mystic Dimension", text: "I looked through 14,000,605 futures, and I love you in every universe. I just wish I had the Time Stone, so I could have gone back in time and met you much earlier.",
                 btnText: "Next Timeline" 
             },
@@ -216,7 +253,7 @@
                 btnText: "Verify Worthiness", specialAction: "triggerThor" 
             },
             {
-                theme: "theme-god", type: "photo", visual: "us.jpg", 
+                theme: "theme-god", type: "photo", auraClass: "photo-lightning-aura", visual: "us.jpg", 
                 title: "Worthy ⚡", text: "I checked with Mjolnir. It confirmed what I already knew: You are definitely Worthy.",
                 btnText: "Final Scan"
             },
@@ -239,6 +276,17 @@
             const contentBox = document.getElementById('content-box');
             const dynamicContentArea = document.getElementById('dynamic-content-area');
             const btnArea = document.getElementById('button-container');
+            const bgEffects = document.getElementById('background-effects');
+
+            // Set Background Effects
+            bgEffects.innerHTML = "";
+            if (data.theme === "theme-ironman") {
+                bgEffects.innerHTML = `<div class="hud-overlay"></div><div class="hud-scanner"></div>`;
+            } else if (data.theme === "theme-cap") {
+                bgEffects.innerHTML = `<div class="cap-particles"></div>`;
+            } else if (data.theme === "theme-strange") {
+                bgEffects.innerHTML = `<div class="magic-sparks"></div>`;
+            }
 
             // Trigger fade animation
             contentBox.classList.remove('fade-in');
@@ -248,8 +296,9 @@
 
             // Render Content based on type
             if (data.type === "photo") {
+                const aura = data.auraClass || "photo-lightning-aura";
                 dynamicContentArea.innerHTML = `
-                    <div class="visual-container"><div class="photo-lightning-aura"><div class="photo-visual"><img src="${data.visual}"></div></div></div>
+                    <div class="visual-container"><div class="${aura}"><div class="photo-visual"><img src="${data.visual}"></div></div></div>
                     <h1 class="title">${data.title}</h1><p class="paragraph">${data.text}</p>
                 `;
             } else {
