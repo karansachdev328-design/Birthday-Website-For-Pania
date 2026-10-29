@@ -97,7 +97,7 @@
         .photo-lightning-aura { width: 100%; max-width: 330px; position: relative; padding: 4px; border-radius: 18px; z-index: 5; animation: lightningAuraPulse 2s ease-in-out infinite; }
         @keyframes lightningAuraPulse { 0%, 100% { box-shadow: 0 0 8px #00d2ff, 0 0 20px #00d2ff; } 50% { box-shadow: 0 0 15px #ffffff, 0 0 30px #00d2ff; } }
 
-        /* --- MARVEL BACKGROUND ANIMATIONS --- */
+        /* --- MARVEL BACKGROUND ANIMATIONS (Reading Pages) --- */
         .hud-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,204,0,0.03) 2px, rgba(255,204,0,0.03) 4px); z-index: 1; }
         .hud-scanner { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: rgba(255, 204, 0, 0.8); box-shadow: 0 0 15px #ffcc00; animation: hudScan 3.5s linear infinite; z-index: 2; }
         @keyframes hudScan { 0% { top: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
@@ -124,13 +124,27 @@
         .overlay-visual img { max-width: 90vw; max-height: 60vh; border-radius: 12px; object-fit: contain; }
         @keyframes heroArrival { 0% { transform: scale(0); opacity: 0; } 80% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
 
-        /* Individual Hero Glows for their Cutscenes */
+        /* Individual Hero Glows for their Cutscene Images */
         #ironman-overlay img { box-shadow: 0 0 50px #ff0000; }
         #cap-overlay img { box-shadow: 0 0 50px #0055ff; }
         #strange-overlay img { box-shadow: 0 0 50px #00ff00; }
         #thor-overlay img { box-shadow: 0 0 50px #00d2ff; }
 
-        /* Thor specific background flash */
+        /* --- NEW: CINEMATIC CUTSCENE BACKGROUND FLASHES --- */
+        
+        /* Iron Man Repulsor Flash */
+        .ironman-flash-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,204,0,0.4) 10%, rgba(255,0,0,0.3) 60%, transparent 100%); opacity: 0; animation: repulsorFlash 2.8s ease-out; }
+        @keyframes repulsorFlash { 0% { opacity: 1; transform: scale(0.8); } 15% { opacity: 0; transform: scale(1.2); } 100% { opacity: 0; } }
+
+        /* Cap Shield Shockwave */
+        .cap-flash-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,255,255,0.5) 10%, rgba(0,85,255,0.4) 50%, transparent 100%); opacity: 0; animation: shieldShockwave 2.8s ease-out; }
+        @keyframes shieldShockwave { 0% { opacity: 1; transform: scale(0.1); } 30% { opacity: 0; transform: scale(1.5); } 100% { opacity: 0; } }
+
+        /* Doctor Strange Mystic Pulse */
+        .strange-flash-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(0,255,0,0.3) 10%, rgba(255,102,0,0.2) 70%, transparent 100%); opacity: 0; animation: mysticPulse 2.8s ease-in-out; }
+        @keyframes mysticPulse { 0% { opacity: 0; } 20% { opacity: 1; } 60% { opacity: 0.8; } 100% { opacity: 0; } }
+
+        /* Thor Lightning Flash (Original) */
         .lightning-flash-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; opacity: 0; animation: backgroundLightningStrike 2.8s ease-out; }
         @keyframes backgroundLightningStrike { 0%, 10%, 20%, 30% { opacity: 1; } 5%, 15%, 25%, 40%, 100% { opacity: 0; } }
 
@@ -154,14 +168,17 @@
         <h2 style="margin-top: 25px; font-family: 'Poppins', sans-serif; font-weight: 300; letter-spacing: 2px;">Opening...</h2>
     </div>
 
-    <!-- The Marvel Cinematic Cutscenes -->
+    <!-- The Marvel Cinematic Cutscenes (NOW WITH CUSTOM BACKGROUND FLASHES!) -->
     <div id="ironman-overlay" class="full-screen-overlay">
+        <div class="ironman-flash-bg"></div>
         <div class="overlay-visual"><img src="ironman.gif" alt="Iron Man"></div>
     </div>
     <div id="cap-overlay" class="full-screen-overlay">
+        <div class="cap-flash-bg"></div>
         <div class="overlay-visual"><img src="captain.gif" alt="Captain America"></div>
     </div>
     <div id="strange-overlay" class="full-screen-overlay">
+        <div class="strange-flash-bg"></div>
         <div class="overlay-visual"><img src="drstrange.gif" alt="Doctor Strange"></div>
     </div>
     <div id="thor-overlay" class="full-screen-overlay">
@@ -228,7 +245,7 @@
                 btnText: "Enter the Marvel Multiverse", specialAction: "triggerIronMan" 
             },
             
-            // --- MARVEL READING PAGES (Triggered AFTER the cinematic overlays) ---
+            // --- MARVEL READING PAGES ---
             {
                 theme: "theme-ironman", type: "standard", visual: { content: "🤖" }, 
                 title: "Earth-199999", text: "Tony Stark said it best: I love you 3000. But honestly, even 3000 seems like a small number when it comes to how much you mean to me.",
@@ -277,7 +294,7 @@
             const btnArea = document.getElementById('button-container');
             const bgEffects = document.getElementById('background-effects');
 
-            // Set Marvel Background Effects (HUD, Snow, Sparks)
+            // Set Marvel Background Effects (HUD, Snow, Sparks) for reading pages
             bgEffects.innerHTML = "";
             if (data.theme === "theme-ironman") {
                 bgEffects.innerHTML = `<div class="hud-overlay"></div><div class="hud-scanner"></div>`;
@@ -349,12 +366,10 @@
             }, 1200);
         }
 
-        // Generic function to play ANY hero cutscene
         function playCinematicOverlay(overlayId) {
             const overlay = document.getElementById(overlayId);
             overlay.style.display = 'flex';
             
-            // Gives the GIF 2.8 seconds to play before fading out
             setTimeout(() => {
                 overlay.style.transition = 'opacity 0.5s ease';
                 overlay.style.opacity = '0';
@@ -363,7 +378,7 @@
                     overlay.style.display = 'none';
                     overlay.style.opacity = '1'; 
                     overlay.style.transition = 'none'; 
-                    nextPage(); // Move to their reading page
+                    nextPage(); 
                 }, 500); 
             }, 2800); 
         }
