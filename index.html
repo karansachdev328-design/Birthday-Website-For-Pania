@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 23rd Birthday Pania!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            min-height: 100vh; min-height: 100dvh; 
+            display: flex; flex-direction: column; 
+            padding: 15px 20px; 
+            padding-bottom: calc(20px + env(safe-area-inset-bottom)); 
+            text-align: center;
+            transition: background 0.8s ease, color 0.8s ease; 
+            overflow-x: hidden; overflow-y: auto;
+        }
+
+        /* Glass Panel */
+        .glass-panel {
+            width: 100%; max-width: 450px; margin: auto; 
+            padding: 28px 22px; border-radius: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+
+        /* --- THEMES --- */
+        .theme-dark { background: linear-gradient(135deg, #1c2a38, #0d1117); color: #e8e8e8; }
+        .theme-dark button { border-color: #e8e8e8; color: #e8e8e8; }
+        .theme-dark button:hover:not(:disabled) { background: #e8e8e8; color: #0d1117 !important; }
+
+        .theme-fairy { background: linear-gradient(135deg, #fdfbf7, #fce4ec); color: #8a6d3b; }
+        .theme-fairy button { border-color: #8a6d3b; color: #8a6d3b; }
+        .theme-fairy button:hover:not(:disabled) { background: #8a6d3b; color: #fdfbf7 !important; }
+
+        .theme-earth { background: linear-gradient(135deg, #fdfbf7, #e2d1c3); color: #1a1a1a; }
+        .theme-earth button { border-color: #1a1a1a; color: #1a1a1a; }
+        .theme-earth button:hover:not(:disabled) { background: #1a1a1a; color: #ffffff !important; }
+
+        .theme-cinema { background: linear-gradient(135deg, #2b2b2b, #1a1a1a); color: #e8e8e8; }
+        .theme-cinema button { border-color: #e8e8e8; color: #e8e8e8; }
+        .theme-cinema button:hover:not(:disabled) { background: #e8e8e8; color: #1a1a1a !important; }
+        
+        .theme-office { background: linear-gradient(135deg, #e0eaf5, #f8f9fa); color: #343a40; }
+        .theme-office button { border: 2px solid #0056b3; color: #0056b3; }
+        .theme-office button:hover:not(:disabled) { background: #0056b3; color: #ffffff !important; }
+
+        .theme-god { background: linear-gradient(135deg, #e0eaf5, #a6c1ee); color: #343a40; }
+        .theme-god button { border-color: #343a40; color: #343a40; }
+        .theme-god button:hover:not(:disabled) { background: #343a40; color: #ffffff !important; }
+
+        .theme-finale { background: #fffafa; color: #b08d57; }
+        .theme-finale .glass-panel { background: #fff; border: 2px solid #d4af37; box-shadow: 0 10px 40px rgba(212, 175, 55, 0.15); }
+        .theme-finale button { background: transparent; border: 2px solid #d4af37; color: #d4af37; }
+        .theme-finale button:hover:not(:disabled) { background: #d4af37; color: #fff !important; }
+
+        /* --- TEXT STYLING --- */
+        .title { font-size: 1.75rem; margin-bottom: 10px; letter-spacing: 1px; font-family: 'Playfair Display', serif; }
+        .paragraph { font-size: 1.05rem; line-height: 1.45; margin-bottom: 18px; min-height: 70px; font-family: 'Poppins', sans-serif; }
+        .icon { font-size: 3.2rem; margin-bottom: 8px; display: block; text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+
+        /* --- VISUAL ELEMENTS --- */
+        .visual-container { width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 12px; flex-direction: column; }
+        
+        .photo-visual { width: 100%; max-width: 320px; border-radius: 15px; overflow: hidden; background: rgba(0,0,0,0.2); }
+        .photo-visual img { width: 100%; max-height: 40vh; object-fit: contain; border-radius: 15px; display: block; }
+        .photo-lightning-aura { width: 100%; max-width: 330px; position: relative; padding: 4px; border-radius: 18px; animation: lightningAuraPulse 1s ease-in-out infinite; }
+        @keyframes lightningAuraPulse { 0%, 100% { box-shadow: 0 0 8px #00d2ff, 0 0 20px #00d2ff; } 50% { box-shadow: 0 0 15px #ffffff, 0 0 30px #00d2ff; } }
+
+        /* --- BUTTONS --- */
+        .btn-container { display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%; margin-top: 15px; }
+        button { padding: 12px 20px; font-size: 1.05rem; border-radius: 30px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 600; transition: all 0.3s ease; width: 100%; max-width: 300px; background: transparent; border: 2px solid; color: inherit; }
+        button:disabled { opacity: 0.3; cursor: not-allowed; color: #777 !important; border-color: #777 !important; }
+        button:hover:not(:disabled) { transform: translateY(-2px); }
+
+        .fade-in { animation: fadeIn 0.8s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- OVERLAYS --- */
+        #present-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 9999; display: none; align-items: center; justify-content: center; flex-direction: column; color: white; backdrop-filter: blur(5px); }
+        .present-icon { font-size: 6rem; animation: giftShake 0.6s ease-in-out infinite; }
+        @keyframes giftShake { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-15deg) scale(1.1); } 75% { transform: rotate(15deg) scale(1.1); } }
+        .pop-out { animation: popOut 0.5s forwards !important; }
+        @keyframes popOut { 0% { transform: scale(1.1); opacity: 1; } 50% { transform: scale(1.8); opacity: 1; } 100% { transform: scale(4); opacity: 0; } }
+
+        #thor-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 10000; display: none; align-items: center; justify-content: center; flex-direction: column; overflow: hidden; }
+        .lightning-flash-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; opacity: 0; animation: backgroundLightningStrike 2.8s ease-out; }
+        @keyframes backgroundLightningStrike { 0%, 10%, 20%, 30% { opacity: 1; } 5%, 15%, 25%, 40%, 100% { opacity: 0; } }
+        .thor-visual { display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; animation: thorArrival 0.5s ease-out; }
+        .thor-visual img { max-width: 90vw; max-height: 60vh; border-radius: 12px; object-fit: contain; box-shadow: 0 0 50px #00d2ff; }
+        @keyframes thorArrival { 0% { transform: scale(0); opacity: 0; } 80% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+
+    </style>
+</head>
+<body class="theme-dark" id="body-bg">
+
+    <div id="present-overlay">
+        <div class="present-icon" id="present-box">🎁</div>
+        <h2 style="margin-top: 25px; font-family: 'Poppins', sans-serif; font-weight: 300; letter-spacing: 2px;">Opening...</h2>
+    </div>
+
+    <div id="thor-overlay">
+        <div class="lightning-flash-bg"></div> 
+        <div class="thor-visual"><img src="thor.gif" alt="Thor Lightning Strike"></div>
+    </div>
+
+    <div class="glass-panel fade-in" id="content-box">
+        <div id="dynamic-content-area"></div>
+        <div class="btn-container" id="button-container"></div>
+    </div>
+
+    <script>
+        const pages = [
+            {
+                theme: "theme-dark", type: "standard", visual: { content: "⏳" },
+                title: "Are you ready?", text: "A very special journey is about to begin. Please wait while the timeline calibrates...",
+                btnText: "Begin Journey", isTimer: true 
+            },
+            {
+                theme: "theme-fairy", type: "standard", visual: { content: "🎂" },
+                title: "Happy 23rd Birthday Pania!", text: "Every day with you is amazing, but today is the absolute best of them all!!",
+                btnText: "Open Your Present 🎁", specialAction: "openPresent" 
+            },
+            {
+                theme: "theme-earth", type: "standard", visual: { content: "🌍" },
+                title: "Multiverse Scanner", text: "Welcome to your personal Multiverse Scanner. I already know that in this reality, you are the most elegant, gorgeous, and inspiring person... but let's check the alternate timelines just to be scientifically sure.",
+                btnText: "Initiate Scan" 
+            },
+            {
+                theme: "theme-cinema", type: "standard", visual: { content: "🎬" },
+                title: "Universe Noir-1960", text: "A vintage masterpiece. In this cinematic reality, you are the untouchable leading lady with flawless style, known to everyone by the name of Alia Bhatt. Everyone else is just an extra, and I am your biggest fan.",
+                btnText: "Scan Next Timeline" 
+            },
+            {
+                theme: "theme-office", type: "standard", visual: { content: "☕" },
+                title: "The Scranton Reality", text: "Welcome to Dunder Mifflin. In this timeline, you are the Pam Beesly of the office—effortlessly great, universally loved, and the absolute heart of the workplace. Even Michael Scott would proudly declare you the world's best, and you're guaranteed to win the most prestigious Dundie every single year.",
+                btnText: "Scan Next Timeline" 
+            },
+            {
+                theme: "theme-dark", type: "standard", visual: { content: "⚡" },
+                title: "Anomaly Detected", text: "Wait, an anomaly is detected in the multiverse timeline. The system needs to verify your worthiness before we can continue...",
+                btnText: "Verify Worthiness", specialAction: "triggerThor" 
+            },
+            {
+                theme: "theme-god", type: "photo", visual: "us.jpg", 
+                title: "Worthy ⚡", text: "I checked with Mjolnir. It confirmed what I already knew: You are definitely Worthy.",
+                btnText: "Final Scan"
+            },
+            {
+                theme: "theme-finale", type: "standard", visual: { content: "👑" },
+                title: "Scan Complete.", text: "The data is undeniable. I checked them all, and it's a scientific fact: you are simply the best across all the universes. Happy 23rd Birthday! 🥂",
+                btnText: "One Last Thing..."
+            },
+            {
+                theme: "theme-finale", type: "question", visual: { content: "💌" },
+                title: "One Final Question", text: "Did you enjoy this little birthday web page?",
+                buttons: ["Yes", "Definitely Yes", "100% Yes", "Without a doubt, Yes!"]
+            }
+        ];
+
+        let currentIndex = 0;
+
+        function updatePage() {
+            const data = pages[currentIndex];
+            const contentBox = document.getElementById('content-box');
+            const dynamicContentArea = document.getElementById('dynamic-content-area');
+            const btnArea = document.getElementById('button-container');
+
+            // Trigger fade animation
+            contentBox.classList.remove('fade-in');
+            void contentBox.offsetWidth; 
+            contentBox.classList.add('fade-in');
+            document.getElementById('body-bg').className = data.theme;
+
+            // Render Content based on type
+            if (data.type === "photo") {
+                dynamicContentArea.innerHTML = `
+                    <div class="visual-container"><div class="photo-lightning-aura"><div class="photo-visual"><img src="${data.visual}"></div></div></div>
+                    <h1 class="title">${data.title}</h1><p class="paragraph">${data.text}</p>
+                `;
+            } else {
+                dynamicContentArea.innerHTML = `
+                    <div class="visual-container"><span class="icon">${data.visual.content}</span></div>
+                    <h1 class="title">${data.title}</h1><p class="paragraph">${data.text}</p>
+                `;
+            }
+
+            // Render Buttons based on special actions
+            if (data.type === "question") {
+                btnArea.innerHTML = data.buttons.map(btn => `<button onclick="finishJourney()">${btn}</button>`).join('');
+            } else if (data.isTimer) {
+                btnArea.innerHTML = `<button id="nav-btn" disabled>Unlocking in 3...</button>`;
+                let timeLeft = 3;
+                const timer = setInterval(() => {
+                    timeLeft--;
+                    if (timeLeft > 0) document.getElementById('nav-btn').innerText = `Unlocking in ${timeLeft}...`;
+                    else {
+                        clearInterval(timer);
+                        document.getElementById('nav-btn').innerText = data.btnText;
+                        document.getElementById('nav-btn').disabled = false;
+                        document.getElementById('nav-btn').onclick = nextPage;
+                    }
+                }, 1000);
+            } else if (data.specialAction === "openPresent") {
+                btnArea.innerHTML = `<button onclick="openPresentEffect()">${data.btnText}</button>`;
+            } else if (data.specialAction === "triggerThor") {
+                btnArea.innerHTML = `<button onclick="showThorAnimation()">${data.btnText}</button>`;
+            } else {
+                btnArea.innerHTML = `<button onclick="nextPage()">${data.btnText}</button>`;
+            }
+        }
+
+        // Overlay Animations
+        function openPresentEffect() {
+            const overlay = document.getElementById('present-overlay');
+            const box = document.getElementById('present-box');
+            overlay.style.display = 'flex';
+            box.classList.remove('pop-out'); 
+            setTimeout(() => {
+                box.classList.add('pop-out');
+                setTimeout(() => { overlay.style.display = 'none'; nextPage(); }, 500); 
+            }, 1200);
+        }
+
+        function showThorAnimation() {
+            const overlay = document.getElementById('thor-overlay');
+            overlay.style.display = 'flex';
+            setTimeout(() => {
+                overlay.style.transition = 'opacity 0.5s ease';
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    overlay.style.opacity = '1'; overlay.style.transition = 'none'; 
+                    nextPage(); 
+                }, 500); 
+            }, 2800); 
+        }
+
+        function nextPage() { if (currentIndex < pages.length - 1) { currentIndex++; updatePage(); } }
+        function finishJourney() { alert("I knew you would like it! Happy Birthday Pania! ❤️💫"); }
+
+        window.onload = updatePage;
+    </script>
+</body>
+</html>
