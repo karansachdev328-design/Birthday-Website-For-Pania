@@ -66,6 +66,10 @@
         .theme-pro { background: linear-gradient(135deg, #000000, #2c3e50); color: #d4af37; }
         .theme-pro button { border-color: #d4af37; color: #d4af37; }
         .theme-pro button:hover:not(:disabled) { background: #d4af37; color: #000000 !important; }
+        
+        .theme-doctor { background: linear-gradient(135deg, #e0f2fe, #f0f9ff); color: #0369a1; }
+        .theme-doctor button { border-color: #0369a1; color: #0369a1; }
+        .theme-doctor button:hover:not(:disabled) { background: #0369a1; color: #ffffff !important; }
 
         /* MARVEL THEMES */
         .theme-ironman { background: linear-gradient(135deg, #4a0404, #1a0000); color: #d4af37; }
@@ -76,7 +80,6 @@
         .theme-cap button { border-color: #e8e8e8; color: #e8e8e8; }
         .theme-cap button:hover:not(:disabled) { background: #e8e8e8; color: #010a14 !important; }
 
-        /* UPGRADED DOCTOR STRANGE THEME: Astral Purple & Time Stone Emerald */
         .theme-strange { background: linear-gradient(135deg, #0b1021, #1a0b2e, #310842); color: #00fa9a; }
         .theme-strange button { border-color: #00fa9a; color: #00fa9a; }
         .theme-strange button:hover:not(:disabled) { background: #00fa9a; color: #1a0b2e !important; }
@@ -91,12 +94,15 @@
         .paragraph { font-size: 1.05rem; line-height: 1.45; margin-bottom: 18px; min-height: 70px; font-family: 'Poppins', sans-serif; }
         .icon { font-size: 3.2rem; margin-bottom: 8px; display: block; text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
 
-        /* --- VISUAL ELEMENTS FOR THE FINAL PHOTO --- */
+        /* --- VISUAL ELEMENTS FOR NORMAL PHOTOS --- */
         .visual-container { width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 12px; flex-direction: column; position: relative; }
         .photo-visual { width: 100%; max-width: 320px; border-radius: 15px; overflow: hidden; background: rgba(0,0,0,0.2); }
         .photo-visual img { width: 100%; max-height: 40vh; object-fit: contain; border-radius: 15px; display: block; }
+        
         .photo-lightning-aura { width: 100%; max-width: 330px; position: relative; padding: 4px; border-radius: 18px; z-index: 5; animation: lightningAuraPulse 2s ease-in-out infinite; }
         @keyframes lightningAuraPulse { 0%, 100% { box-shadow: 0 0 8px #00d2ff, 0 0 20px #00d2ff; } 50% { box-shadow: 0 0 15px #ffffff, 0 0 30px #00d2ff; } }
+        
+        .standard-photo-frame { width: 100%; max-width: 330px; position: relative; padding: 4px; border-radius: 18px; z-index: 5; border: 2px solid rgba(255,255,255,0.4); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
 
         /* --- MARVEL BACKGROUND ANIMATIONS (Reading Pages) --- */
         .hud-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,204,0,0.03) 2px, rgba(255,204,0,0.03) 4px); z-index: 1; }
@@ -106,7 +112,6 @@
         .cap-particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; background-image: radial-gradient(circle, #ffffff 2px, transparent 2px); background-size: 60px 60px; animation: snowFall 12s linear infinite; opacity: 0.3; z-index: 1; }
         @keyframes snowFall { 0% { background-position: 0px 0px; } 100% { background-position: 150px 600px; } }
 
-        /* Upgraded Magic Sparks to Emerald Green */
         .magic-sparks { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; background-image: radial-gradient(circle, #00fa9a 2px, transparent 2px); background-size: 80px 80px; animation: sparksRise 8s linear infinite; opacity: 0.3; z-index: 1; }
         @keyframes sparksRise { 0% { background-position: 0px 600px; } 100% { background-position: -50px 0px; } }
 
@@ -121,23 +126,18 @@
 
         /* --- MASSIVE CINEMATIC CUTSCENES OVERLAYS --- */
         .full-screen-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 10000; display: none; align-items: center; justify-content: center; flex-direction: column; overflow: hidden; }
-        
         .overlay-visual { display: flex; align-items: center; justify-content: center; position: relative; z-index: 10; width: 100%; height: 100%; }
         
         .overlay-visual img { 
-            width: 95vw; 
-            height: 90vh; 
-            object-fit: contain; 
+            width: 95vw; height: 90vh; object-fit: contain; 
             animation: slowCinematicZoom 2.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
-
         @keyframes slowCinematicZoom { 
             0% { transform: scale(0.85); opacity: 0; filter: blur(5px); } 
             15% { transform: scale(1); opacity: 1; filter: blur(0px); } 
             100% { transform: scale(1.15); opacity: 1; } 
         }
 
-        /* Hero Drop Shadows */
         #ironman-overlay img { filter: drop-shadow(0 0 40px rgba(255,0,0,0.5)); }
         #cap-overlay img { filter: drop-shadow(0 0 40px rgba(0,85,255,0.5)); }
         #strange-overlay img { filter: drop-shadow(0 0 50px rgba(0,250,154,0.5)); }
@@ -153,9 +153,7 @@
         }
 
         .ironman-cutscene-fx { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 0, 0, 0.15) 2px, rgba(255, 0, 0, 0.15) 4px); z-index: 20; mix-blend-mode: screen; }
-
         .cap-vignette { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.9) 100%); z-index: 20; pointer-events: none; }
-
         .thor-cutscene-fx { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; background: white; pointer-events: none; z-index: 20; animation: strobeFlash 2.8s ease-out forwards; mix-blend-mode: overlay; }
         @keyframes strobeFlash { 0%, 10%, 20%, 30% { opacity: 1; } 5%, 15%, 25% { opacity: 0; } 35%, 100% { opacity: 0; } }
 
@@ -169,49 +167,16 @@
         .lightning-flash-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; opacity: 0; animation: backgroundLightningStrike 2.8s ease-out; }
         @keyframes backgroundLightningStrike { 0%, 10%, 20%, 30% { opacity: 1; } 5%, 15%, 25%, 40%, 100% { opacity: 0; } }
 
-
-        /* --- UPGRADED DOCTOR STRANGE CUTSCENE EFFECTS --- */
-        /* Deep Astral Purple & Emerald Flash */
-        .strange-flash-bg { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            background: radial-gradient(circle, rgba(0, 250, 154, 0.3) 10%, rgba(74, 20, 140, 0.6) 60%, transparent 100%); 
-            opacity: 0; animation: mysticPulse 2.8s ease-in-out; 
-        }
+        /* Doctor Strange Cutscene Effects */
+        .strange-flash-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(0, 250, 154, 0.3) 10%, rgba(74, 20, 140, 0.6) 60%, transparent 100%); opacity: 0; animation: mysticPulse 2.8s ease-in-out; }
         @keyframes mysticPulse { 0% { opacity: 0; } 20% { opacity: 1; } 60% { opacity: 0.8; } 100% { opacity: 0; } }
 
-        /* Complex Rotating Triple-Ring Mandala */
-        .strange-cutscene-fx { 
-            position: absolute; top: 50%; left: 50%; width: 140vw; height: 140vw; max-width: 900px; max-height: 900px; 
-            transform: translate(-50%, -50%); 
-            border: 4px solid rgba(0, 250, 154, 0.3); 
-            border-radius: 50%; 
-            box-shadow: 0 0 50px rgba(0, 250, 154, 0.8) inset, 0 0 80px rgba(74, 20, 140, 0.8); 
-            animation: strangePortalOuter 2.8s linear forwards; 
-            pointer-events: none; z-index: 5; 
-        }
-        /* Inner Dashed Ring (Spins reverse) */
-        .strange-cutscene-fx::before {
-            content: ''; position: absolute; top: 10%; left: 10%; right: 10%; bottom: 10%;
-            border: 4px dashed rgba(0, 250, 154, 0.8); border-radius: 50%;
-            box-shadow: 0 0 40px rgba(0, 250, 154, 0.5);
-            animation: strangePortalInner 2.8s linear reverse forwards;
-        }
-        /* Core Dotted Ring (Spins fast) */
-        .strange-cutscene-fx::after {
-            content: ''; position: absolute; top: 22%; left: 22%; right: 22%; bottom: 22%;
-            border: 3px dotted rgba(0, 229, 255, 0.8); border-radius: 50%;
-            box-shadow: 0 0 20px #00e5ff;
-            animation: strangePortalCore 2.8s linear forwards;
-        }
-        
-        @keyframes strangePortalOuter { 
-            0% { transform: translate(-50%, -50%) rotate(0deg) scale(0.3); opacity: 0;} 
-            15% { opacity: 1; } 
-            100% { transform: translate(-50%, -50%) rotate(45deg) scale(1); opacity: 1; } 
-        }
+        .strange-cutscene-fx { position: absolute; top: 50%; left: 50%; width: 140vw; height: 140vw; max-width: 900px; max-height: 900px; transform: translate(-50%, -50%); border: 4px solid rgba(0, 250, 154, 0.3); border-radius: 50%; box-shadow: 0 0 50px rgba(0, 250, 154, 0.8) inset, 0 0 80px rgba(74, 20, 140, 0.8); animation: strangePortalOuter 2.8s linear forwards; pointer-events: none; z-index: 5; }
+        .strange-cutscene-fx::before { content: ''; position: absolute; top: 10%; left: 10%; right: 10%; bottom: 10%; border: 4px dashed rgba(0, 250, 154, 0.8); border-radius: 50%; box-shadow: 0 0 40px rgba(0, 250, 154, 0.5); animation: strangePortalInner 2.8s linear reverse forwards; }
+        .strange-cutscene-fx::after { content: ''; position: absolute; top: 22%; left: 22%; right: 22%; bottom: 22%; border: 3px dotted rgba(0, 229, 255, 0.8); border-radius: 50%; box-shadow: 0 0 20px #00e5ff; animation: strangePortalCore 2.8s linear forwards; }
+        @keyframes strangePortalOuter { 0% { transform: translate(-50%, -50%) rotate(0deg) scale(0.3); opacity: 0;} 15% { opacity: 1; } 100% { transform: translate(-50%, -50%) rotate(45deg) scale(1); opacity: 1; } }
         @keyframes strangePortalInner { 0% { transform: rotate(0deg); } 100% { transform: rotate(-90deg); } }
         @keyframes strangePortalCore { 0% { transform: rotate(0deg); } 100% { transform: rotate(180deg); } }
-
 
         /* Present Overlay */
         #present-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 9999; display: none; align-items: center; justify-content: center; flex-direction: column; color: white; backdrop-filter: blur(5px); }
@@ -224,7 +189,7 @@
 </head>
 <body class="theme-dark" id="body-bg">
 
-    <!-- Background Effects Container (For Reading Pages) -->
+    <!-- Background Effects Container -->
     <div id="background-effects"></div>
 
     <!-- Overlays -->
@@ -233,7 +198,7 @@
         <h2 style="margin-top: 25px; font-family: 'Poppins', sans-serif; font-weight: 300; letter-spacing: 2px;">Opening...</h2>
     </div>
 
-    <!-- THE UPGRADED CINEMATIC CUTSCENES -->
+    <!-- CINEMATIC CUTSCENES -->
     <div id="ironman-overlay" class="full-screen-overlay">
         <div class="ironman-flash-bg"></div>
         <div class="ironman-cutscene-fx"></div> 
@@ -248,7 +213,7 @@
     
     <div id="strange-overlay" class="full-screen-overlay">
         <div class="strange-flash-bg"></div>
-        <div class="strange-cutscene-fx"></div> <!-- Upgraded Triple-Ring Mandala -->
+        <div class="strange-cutscene-fx"></div> 
         <div class="overlay-visual"><img src="drstrange.gif" alt="Doctor Strange"></div>
     </div>
     
@@ -293,7 +258,7 @@
             },
             {
                 theme: "theme-fairy", type: "standard", visual: { content: "🧚‍♀️" },
-                title: "The Enchanted Realm", text: "Here, you are undeniably the beautifullest fairy. Your enchanting presence and pure innocence are at the supreme level of all the fairies combined. With your radiant grace and gentle smile, you effortlessly leave a trail of joy wherever you go.",
+                title: "The Enchanted Realm", text: "Here, you are undeniably the most beautiful fairy. Your enchanting presence and pure innocence are at the supreme level of all the fairies combined. With your radiant grace and gentle smile, you effortlessly leave a trail of joy wherever you go.",
                 btnText: "Scan Next Timeline" 
             },
             {
@@ -311,9 +276,23 @@
                 title: "The Celestial Cosmos", text: "Up among the stars and galaxies. In this beautiful timeline, you shine brighter than the moon and every single star in the night sky.",
                 btnText: "Scan Next Timeline" 
             },
+            
+            // --- NEW DOCTOR & LAWYER PAGES ---
+            {
+                theme: "theme-doctor", type: "standard", visual: { content: "🩺" },
+                title: "Universe Dr. Pania", text: "All the universes are good, but this one is incredibly special. All your hard work is paying off, and you are about to officially become a Doctor. I am so proud of the dedication you show every day. You're going to be the most amazing doctor across the entire multiverse.",
+                btnText: "Scan Next Timeline"
+            },
+            {
+                theme: "theme-office", type: "photo", auraClass: "standard-photo-frame", visual: "selfie.jpg",
+                title: "Your Personal Lawyer ⚖️", text: "In this reality, everyone keeps calling me your lawyer because I am constantly defending you no matter what you do. Honestly, I should probably start charging you a retainer fee, but I'll do it for free because you're my favorite client.",
+                btnText: "Scan Next Timeline"
+            },
+
+            // --- UPGRADED "PROEST OF PROS" PAGE ---
             {
                 theme: "theme-pro", type: "standard", visual: { content: "💎" },
-                title: "The Proest of Pros", text: "The ultimate convergence. Whether you are dropping jaws like Alia, winning Dundies as Pam, spreading joy as a Fairy, ruling empires as a Queen, being worshipped as a Goddess, or outshining the cosmos... your versatility is unmatched.",
+                title: "The Best of All", text: "The ultimate convergence. Whether you are dropping jaws like Alia, winning Dundies as Pam, spreading joy as a Fairy, ruling empires as a Queen, being worshipped as a Goddess, saving lives as a Doctor, or having me defend you in court... your versatility is unmatched.",
                 btnText: "Enter the Marvel Multiverse", specialAction: "triggerIronMan" 
             },
             
@@ -341,7 +320,7 @@
                 btnText: "Verify Worthiness", specialAction: "triggerThor" 
             },
             {
-                theme: "theme-god", type: "photo", visual: "us.jpg", 
+                theme: "theme-god", type: "photo", auraClass: "photo-lightning-aura", visual: "us.jpg", 
                 title: "Worthy ⚡", text: "I checked with Mjolnir. It confirmed what I already knew: You are definitely Worthy.",
                 btnText: "Final Scan"
             },
@@ -384,8 +363,9 @@
 
             // Render Content
             if (data.type === "photo") {
+                const aura = data.auraClass || "photo-lightning-aura";
                 dynamicContentArea.innerHTML = `
-                    <div class="visual-container"><div class="photo-lightning-aura"><div class="photo-visual"><img src="${data.visual}"></div></div></div>
+                    <div class="visual-container"><div class="${aura}"><div class="photo-visual"><img src="${data.visual}"></div></div></div>
                     <h1 class="title">${data.title}</h1><p class="paragraph">${data.text}</p>
                 `;
             } else {
